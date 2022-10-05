@@ -37,6 +37,7 @@
     font-size: 20px;
     color: #ccc;
     background-color: #000000;
+    border: 1px solid #c89666;
     border-radius: 10px;
 }
 
@@ -71,7 +72,7 @@
 }
 
 .button-complete {
-    color: #ff6c6c;
+    color: #006a4e;
     margin-right: 10px;
 }
 
@@ -81,14 +82,14 @@
 }
 
 .button-delete {
-    color: lightseagreen;
+    color: #e03c31;
 }
 
 .complete {
     text-decoration-style: solid;
     text-decoration-line: line-through;
     text-decoration-color: #ff6c6c;
-    opacity: .6;
+    opacity: 0.6;
 }
 
 .list {

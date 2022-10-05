@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import TodoDetailsModal from '../TodoDetailsModal/TodoDetailsModal';
 
-
-const TodosList = ({ todos, setTodos, setEditTodo }) => {
+const TodosList = ({ todos, setTodos, setEditTodo, clickItem }) => {
     const handleComplete = (todo) => {
         setTodos(
             todos.map((item) => {
@@ -22,6 +22,8 @@ const TodosList = ({ todos, setTodos, setEditTodo }) => {
         setTodos(todos.filter((todo) => todo.id !== id));
     };
 
+    const [todoModal, setTodoModal] = useState(false);
+
     return (
         <>
             {todos.map((todo) => (
@@ -31,17 +33,17 @@ const TodosList = ({ todos, setTodos, setEditTodo }) => {
                     <input 
                     type="text" 
                     value={todo.title}
-                    className="list" 
+                    className={`list ${todo.completed ? "complete" : ""}`} 
                     onChange={(e) => e.preventDefault()} />
                     <div>
                         <button 
                             className="button-complete task-button" 
                             onClick={() => handleComplete(todo)} >
-                            <i className="fa-duotone fa-circle-check"></i>
+                            <i className="fa fa-check-square-o"></i>
                         </button>
                         <button 
                             className="button-edit task-button" onClick={() => handleEdit(todo)}>
-                            <i className="fa fa-pencil-square-o"></i>
+                            <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
                         </button>
                         <button 
                             className="button-delete task-button" onClick={() => handleDelete(todo)} >
@@ -50,6 +52,7 @@ const TodosList = ({ todos, setTodos, setEditTodo }) => {
                     </div>
                 </li>
             ))}
+            {todoModal && <TodoDetailsModal todo={todoModal} closeModal={() => setTodoModal(false)} />}
         </>
     );
 };
